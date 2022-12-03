@@ -99,10 +99,6 @@ public class Student {
         return idNum;
     }
 
-    public String[] getCourses() {
-        return courses;
-    }
-
     public int getNumCourses() {
         return numCourses;
     }
