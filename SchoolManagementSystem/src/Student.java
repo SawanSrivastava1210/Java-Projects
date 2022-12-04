@@ -9,6 +9,9 @@ public class Student {
     public int idNum;
     private String[] courses = new String[6];
     private int numCourses = 0;
+    private double Tuition = 0;
+    private double APTuition = 2500;
+    private double RegTuition = 1500;
 
     public Student(String name, int grade){
         this.name = name;
@@ -57,6 +60,13 @@ public class Student {
         } else{
             System.out.println(name+" cannot register for "+course+" as AP Classes are only offered to upperclassmen");
             System.out.println();
+        }
+        if (addedCourse){
+            if (isAPCourse)
+                Tuition += APTuition;
+            else{
+                Tuition += RegTuition;
+            }
         }   
     }
 
@@ -87,6 +97,19 @@ public class Student {
         System.out.println();
     }
 
+    public void printSummary(){
+        System.out.println("Name: "+getName());
+        System.out.println();
+        System.out.println("Grade: "+getGrade());
+        System.out.println();
+        System.out.println("Id Number: "+getIdNum());
+        System.out.println();
+        System.out.println("Total tuition: "+getTuitionFormat());
+        System.out.println();
+        showSchedule();
+
+    }
+
     public String getName() {
         return name;
     }
@@ -101,6 +124,14 @@ public class Student {
 
     public int getNumCourses() {
         return numCourses;
+    }
+
+    public double getTuition() {
+        return Tuition;
+    }
+
+    public String getTuitionFormat() {
+        return "$"+Tuition;
     }
 
     public void setName(String name) {
