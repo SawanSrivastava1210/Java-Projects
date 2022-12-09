@@ -72,7 +72,7 @@ public class Student {
 
     public void addCourse(String[] courses){
         int numCoursesAdded = 0;
-            while (numCoursesAdded <= numNullCourses()){
+            while (numCoursesAdded <= numNullCourses(courses)){
                 OUTER_LOOP: for (int j = 0; j < courses.length; j++){
                     boolean isAPCourse = courses[j].contains("AP");
                     if ((isAPCourse && (grade > 10 && grade <= 12)) || !isAPCourse){
@@ -98,16 +98,32 @@ public class Student {
                     System.out.println();
                 }
             }
+            Tuition = numAPCourses(courses)*APTuition;
+            Tuition = numRegCourses(courses)*RegTuition;
+
     }
 
-    public int numNullCourses(){
+    public int numNullCourses(String[] coursesLocal){
         int numNull = 0;
-        for (String j : courses){
+        for (String j : coursesLocal){
             if (j == null){
                 numNull++;
             }
         }
         return numNull;
+    }
+
+    public int numAPCourses(String[] coursesLocal){
+        int numAP = 0;
+        for (String i : coursesLocal){
+            if (i.contains("AP"))
+                numAP++;
+        }
+        return numAP;
+    }
+
+    public int numRegCourses(String[] coursesLocal){
+        return coursesLocal.length - numAPCourses(coursesLocal);
     }
 
     public void removeCourse(String course){
