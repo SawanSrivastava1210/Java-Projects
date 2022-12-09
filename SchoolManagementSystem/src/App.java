@@ -15,11 +15,14 @@ public class App {
         Sawan.addCourse("AP Physics 2");
         Sawan.removeCourse("AP Physics 2");
         Sawan.addCourse("Photography");
-        Sawan.printSummary();
+        // Sawan.printSummary();
         
-        Student John = new Student("John",10);
+        Student John = new Student("John",11);
         John.addCourse("AP CS");
         John.addCourse("English 2");
-        John.printSummary();
+        John.showSchedule();
+        String[] c = new String[]{"AP UR MOM", "AP UR DAD", "AP TEST", "AP TEST2", "TEST"};
+        John.addCourse(c);
+        John.showSchedule();
     }
 }

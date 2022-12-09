@@ -70,6 +70,46 @@ public class Student {
         }   
     }
 
+    public void addCourse(String[] courses){
+        int numCoursesAdded = 0;
+            while (numCoursesAdded <= numNullCourses()){
+                OUTER_LOOP: for (int j = 0; j < courses.length; j++){
+                    boolean isAPCourse = courses[j].contains("AP");
+                    if ((isAPCourse && (grade > 10 && grade <= 12)) || !isAPCourse){
+                        INNER_LOOP: for (int i = 0;i < this.courses.length;i++){
+                            if (this.courses[i] == null){
+                                this.courses[i] = courses[j];
+                                System.out.println(courses[j]+" successfully added to "+ name+ "'s schedule");
+                                System.out.println();
+                                numCoursesAdded++;
+                                continue OUTER_LOOP;
+                            }
+                        } 
+                    } else
+                        System.out.println(name+ " can not add "+courses[j]+" to their schedule because it is an AP Class and they are not an upperclassman");  
+                        System.out.println();       
+                continue;
+                }
+            }
+        
+            if (numCoursesAdded < courses.length){
+                for (int k = numCoursesAdded; k < courses.length;k++){
+                    System.out.println("Unable to add "+courses[k]+" to "+name+"'s schedule because of inadequate space");
+                    System.out.println();
+                }
+            }
+    }
+
+    public int numNullCourses(){
+        int numNull = 0;
+        for (String j : courses){
+            if (j == null){
+                numNull++;
+            }
+        }
+        return numNull;
+    }
+
     public void removeCourse(String course){
         boolean removedCourse = false;
         for (int i = 0; i < courses.length; i++){
